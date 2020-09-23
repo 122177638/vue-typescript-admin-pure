@@ -2,7 +2,7 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:58
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 18:36:59
+ * @LastEditTime: 2020-09-23 10:00:44
  * @Description: 👉
  */
 module.exports = {
@@ -10,7 +10,6 @@ module.exports = {
   env: {
     node: true,
   },
-  // extends: ['plugin:vue/recommended', '@vue/typescript/recommended', '@vue/prettier'],
   extends: ['plugin:vue/essential', '@vue/prettier', '@vue/typescript'],
   parserOptions: {
     ecmaVersion: 2020,
