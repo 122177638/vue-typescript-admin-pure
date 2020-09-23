@@ -2,13 +2,11 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:59
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 17:50:23
+ * @LastEditTime: 2020-09-23 16:20:19
  * @Description: 👉
 -->
 <template>
-  <div class="dashboard-container">
-    <component :is="currentRole" />
-  </div>
+  <component :is="currentRole" />
 </template>
 
 <script lang="ts">

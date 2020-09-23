@@ -1,22 +1,15 @@
 <!--
  * @Author: Anles💯
- * @Date: 2020-09-22 10:33:59
+ * @Date: 2020-08-28 15:06:17
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 16:47:06
+ * @LastEditTime: 2020-09-23 19:05:57
  * @Description: 👉
 -->
 <template>
-  <div class="dashboard-editor-container">
-    <div class="clearfix">
-      <pan-thumb :image="avatar" style="float: left"> Your roles: admin </pan-thumb>
-      <div class="info-container">
-        <span class="display_name">{{ 'anles' }}</span>
-        <span style="font-size: 20px; padding-top: 20px; display: inline-block">Editor's Dashboard</span>
-      </div>
-    </div>
-    <div>
-      <img :src="emptyGif" class="emptyGif" />
-    </div>
+  <div class="app-main dashboard-container">
+    <pan-thumb :image="avatar" style="float: left"><div class="eggs">这里有彩蛋~ ~</div></pan-thumb>
+    <p class="welcome-text">Welcome</p>
+    <h2 class="welcome-name">{{ demoName }}</h2>
   </div>
 </template>
 
@@ -24,54 +17,62 @@
 import { Component, Vue } from 'vue-property-decorator'
 import PanThumb from '@/components/PanThumb/index.vue'
 import { UserModule } from '@/store/modules/user'
+import settings from '@/settings'
 
 @Component({
-  name: 'DashboardAdmin',
   components: {
     PanThumb,
   },
 })
-export default class extends Vue {
+export default class Dashboard extends Vue {
   private get avatar() {
     return UserModule.avatar
   }
-
-  private emptyGif = 'https://wpimg.wallstcn.com/0e03b7da-db9e-4819-ba10-9016ddfdaed3'
+  demoName: string = settings.title
 }
 </script>
 
 <style lang="scss" scoped>
-.emptyGif {
-  display: block;
-  width: 45%;
-  margin: 0 auto;
-}
-
-.dashboard-editor-container {
-  background-color: #e3e3e3;
-  min-height: 100vh;
-  padding: 50px 60px 0px;
-
-  .info-roles {
-    font-size: 12px;
-    font-weight: 700;
-    color: #333;
-    display: block;
-  }
-
-  .info-container {
-    position: relative;
-    margin-left: 190px;
-    height: 150px;
-    line-height: 200px;
-
-    .display_name {
-      font-size: 48px;
-      line-height: 48px;
-      color: #212121;
-      position: absolute;
-      top: 25px;
+.dashboard {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(160deg, #00ffd5 28%, #0767b6 90%);
+    .eggs {
+      color: #fff;
+      font-size: 16px;
     }
+    .welcome-text {
+      font-size: 68px;
+      color: #ffffff;
+      background-image: linear-gradient(to right, #00ffd5 20%, #ffffff);
+      -webkit-background-clip: text;
+      animation: move 3s infinite;
+      /*文字颜色设为透明*/
+      color: transparent;
+      width: 305px;
+    }
+    @keyframes move {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 305px 0;
+      }
+    }
+    .welcome-name {
+      margin-top: 20px;
+      font-size: 40px;
+      color: #fdfdfd;
+      font-family: serif;
+      text-shadow: 0 3px 6px #272626;
+    }
+  }
+  &-text {
+    font-size: 30px;
+    line-height: 46px;
   }
 }
 </style>

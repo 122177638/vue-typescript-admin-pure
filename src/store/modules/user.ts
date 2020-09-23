@@ -2,7 +2,7 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:59
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 15:22:07
+ * @LastEditTime: 2020-09-23 16:24:46
  * @Description: 👉
  */
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators'
@@ -11,13 +11,14 @@ import { PermissionModule } from './permission'
 import { TagsViewModule } from './tags-view'
 import store from '@/store'
 import api from '@/api'
+import avatar from '@/assets/images/timg.gif'
 export interface IUserState {
-  avatar: string
+  avatar: any
 }
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
-  public avatar = require('@/assets/images/timg.gif')
+  public avatar = avatar
   public userInfo: any = {}
   public isLogin = false
 

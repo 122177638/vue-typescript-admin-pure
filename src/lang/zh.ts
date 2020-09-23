@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:58
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 17:16:11
- * @Description: 👉
- */
 export default {
   route: {
     dashboard: '首页',

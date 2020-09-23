@@ -13,9 +13,6 @@ import elementKoLocale from 'element-ui/lib/locale/lang/ko'
 // User defined lang
 import enLocale from './en'
 import zhLocale from './zh'
-import esLocale from './es'
-import jaLocale from './ja'
-import koLocale from './ko'
 
 Vue.use(VueI18n)
 
@@ -29,15 +26,12 @@ const messages = {
     ...elementZhLocale,
   },
   es: {
-    ...esLocale,
     ...elementEsLocale,
   },
   ja: {
-    ...jaLocale,
     ...elementJaLocale,
   },
   ko: {
-    ...koLocale,
     ...elementKoLocale,
   },
 }
@@ -62,6 +56,10 @@ export const getLocale = () => {
 
 const i18n = new VueI18n({
   locale: getLocale(),
+  /** 未匹配语言默认中文 */
+  fallbackLocale: 'zh',
+  /** 关闭未匹配提示 */
+  silentTranslationWarn: true,
   messages,
 })
 

@@ -2,31 +2,31 @@
   <div class="drawer-container">
     <div>
       <h3 class="drawer-title">
-        {{ $t('settings.title') }}
+        {{ $t('系统布局配置') }}
       </h3>
 
       <div class="drawer-item">
-        <span>{{ $t('settings.theme') }}</span>
+        <span>{{ $t('主题色') }}</span>
         <theme-picker style="float: right; height: 26px; margin: -3px 8px 0 0" @change="themeChange" />
       </div>
 
       <div class="drawer-item">
-        <span>{{ $t('settings.showTagsView') }}</span>
+        <span>{{ $t('显示 Tags-View') }}</span>
         <el-switch v-model="showTagsView" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
-        <span>{{ $t('settings.showSidebarLogo') }}</span>
+        <span>{{ $t('显示侧边栏 Logo') }}</span>
         <el-switch v-model="showSidebarLogo" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
-        <span>{{ $t('settings.fixedHeader') }}</span>
+        <span>{{ $t('固定 Header') }}</span>
         <el-switch v-model="fixedHeader" class="drawer-switch" />
       </div>
 
       <div class="drawer-item">
-        <span>{{ $t('settings.sidebarTextTheme') }}</span>
+        <span>{{ $t('侧边栏文字主题色') }}</span>
         <el-switch v-model="sidebarTextTheme" class="drawer-switch" />
       </div>
     </div>

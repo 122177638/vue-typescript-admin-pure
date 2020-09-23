@@ -2,13 +2,12 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:58
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 14:12:28
+ * @LastEditTime: 2020-09-23 16:11:59
  * @Description: 👉
 -->
 <template>
   <div id="app">
     <router-view />
-
     <service-worker-update-popup />
   </div>
 </template>

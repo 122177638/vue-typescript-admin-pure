@@ -2,7 +2,7 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:59
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 15:46:59
+ * @LastEditTime: 2020-09-23 19:05:03
  * @Description: 👉
  */
 interface ISettings {
@@ -19,11 +19,11 @@ interface ISettings {
 
 // You can customize below settings :)
 const settings: ISettings = {
-  title: 'Vue Admin',
+  title: 'Vue Admin Pure',
   showSettings: true,
   showTagsView: true,
   fixedHeader: false,
-  showSidebarLogo: false,
+  showSidebarLogo: true,
   errorLog: ['production'],
   sidebarTextTheme: true,
   devServerPort: 9527,

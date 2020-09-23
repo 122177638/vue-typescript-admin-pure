@@ -10,7 +10,7 @@
     >
       <div class="title-container">
         <h3 class="title">
-          {{ $t('login.title') }}
+          {{ $t('广告监控管理后台') }}
         </h3>
         <lang-select class="set-language" />
       </div>
@@ -22,7 +22,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          :placeholder="$t('login.username')"
+          :placeholder="$t('账号')"
           name="username"
           type="text"
           tabindex="1"
@@ -40,7 +40,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            :placeholder="$t('login.password')"
+            :placeholder="$t('密码')"
             name="password"
             tabindex="2"
             autocomplete="on"
@@ -59,7 +59,7 @@
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleLogin"
       >
-        {{ $t('login.logIn') }}
+        {{ $t('登录') }}
       </el-button>
     </el-form>
   </div>
@@ -86,8 +86,8 @@ export default class extends Vue {
   }
 
   private loginRules = {
-    username: [{ required: true, trigger: 'blur', message: '请输入账号' }],
-    password: [{ required: true, trigger: 'blur', message: '请输入密码' }],
+    username: [{ required: true, trigger: 'blur', message: this.$t('请输入账号') }],
+    password: [{ required: true, trigger: 'blur', message: this.$t('请输入密码') }],
   }
 
   private passwordType = 'password'

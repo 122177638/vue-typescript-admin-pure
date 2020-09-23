@@ -77,7 +77,7 @@ export const constantRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
         name: 'Dashboard',
         meta: {
-          title: 'dashboard',
+          title: '首页',
           icon: 'dashboard',
           affix: true,
         },
@@ -95,8 +95,24 @@ export const constantRoutes: RouteConfig[] = [
         component: () => import(/* webpackChunkName: "profile" */ '@/views/profile/index.vue'),
         name: 'Profile',
         meta: {
-          title: 'profile',
+          title: '个人中心',
           icon: 'user',
+          noCache: true,
+        },
+      },
+    ],
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import(/* webpackChunkName: "icons" */ '@/views/icons/index.vue'),
+        name: 'Icons',
+        meta: {
+          title: '图标',
+          icon: 'icon',
           noCache: true,
         },
       },
@@ -109,22 +125,6 @@ export const constantRoutes: RouteConfig[] = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes: RouteConfig[] = [
-  {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import(/* webpackChunkName: "icons" */ '@/views/icons/index.vue'),
-        name: 'Icons',
-        meta: {
-          title: 'icons',
-          icon: 'icon',
-          noCache: true,
-        },
-      },
-    ],
-  },
   /** when your routing map is too long, you can split it into small modules **/
   {
     path: '*',
