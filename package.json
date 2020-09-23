@@ -43,6 +43,8 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/clipboard": "^2.0.1",
     "@types/compression": "^1.7.0",
     "@types/cors": "^2.8.7",
@@ -100,7 +102,8 @@
     "url": "https://github.com/armour/vue-typescript-admin-template/issues"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -E GIT_PARAMS"
   },
   "keywords": [
     "vue",
