@@ -1,10 +1,12 @@
+<!--
+ * @Author: Anles💯
+ * @Date: 2020-09-22 10:33:59
+ * @LastEditors: Anles💯
+ * @LastEditTime: 2020-09-23 15:09:40
+ * @Description: 👉
+-->
 <template>
   <div class="icons-container">
-    <aside>
-      <a href="https://armour.github.io/vue-typescript-admin-docs/guide/advanced/icon.html" target="_blank"
-        >Add and use
-      </a>
-    </aside>
     <el-tabs type="border-card">
       <el-tab-pane label="Icons">
         <div class="grid">

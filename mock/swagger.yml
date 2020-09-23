@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: Mock API for vue-typescript-admin-template.
+  description: Mock API for vue-typescript-admin-pure.
   version: 1.0.0
   title: Mock API
   contact:
