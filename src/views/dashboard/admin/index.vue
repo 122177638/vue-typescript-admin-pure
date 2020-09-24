@@ -2,12 +2,14 @@
  * @Author: Anles💯
  * @Date: 2020-08-28 15:06:17
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 19:05:57
+ * @LastEditTime: 2020-09-24 10:22:23
  * @Description: 👉
 -->
 <template>
   <div class="app-main dashboard-container">
-    <pan-thumb :image="avatar" style="float: left"><div class="eggs">这里有彩蛋~ ~</div></pan-thumb>
+    <pan-thumb :image="avatar" style="float: left">
+      <div class="eggs">{{ $t('{name}，你认真工作的样子,真的很赞', { name: 'anles' }) }}</div>
+    </pan-thumb>
     <p class="welcome-text">Welcome</p>
     <h2 class="welcome-name">{{ demoName }}</h2>
   </div>

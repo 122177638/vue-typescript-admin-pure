@@ -2,7 +2,7 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:58
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 17:17:04
+ * @LastEditTime: 2020-09-24 09:54:29
  * @Description: 👉
  */
 import router from './router'
@@ -18,9 +18,9 @@ NProgress.configure({ showSpinner: false })
 const whiteList = ['/login', '/auth-redirect']
 
 const getPageTitle = (key: string) => {
-  const hasKey = i18n.te(`route.${key}`)
+  const hasKey = i18n.te(`${key}`)
   if (hasKey) {
-    const pageName = i18n.t(`route.${key}`)
+    const pageName = i18n.t(`${key}`)
     return `${pageName} - ${settings.title}`
   }
   return `${settings.title}`

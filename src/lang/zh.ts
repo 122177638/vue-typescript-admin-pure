@@ -1,33 +1,10 @@
+/**
+ * 由于是中文是做为变量key、并且是匹配失败的预备语言
+ * 所以我们在开发中只需要注意传参的变量需要重写
+ * 而不需要传参的变量，我们直接使用$t('中文')即可
+ * 在其他语言中，则都需要设置匹配语言项
+ * 可以在项目中文语言开发完成后，通过$t(全局搜索，来找到使用的key,来进行预备词语言
+ */
 export default {
-  route: {
-    dashboard: '首页',
-    icons: '图标',
-  },
-  navbar: {
-    logOut: '退出登录',
-    dashboard: '首页',
-    theme: '换肤',
-    size: '布局大小',
-    profile: '个人中心',
-  },
-  login: {
-    title: '广告监控管理后台',
-    logIn: '登录',
-    username: '账号',
-    password: '密码',
-  },
-  tagsView: {
-    refresh: '刷新',
-    close: '关闭',
-    closeOthers: '关闭其它',
-    closeAll: '关闭所有',
-  },
-  settings: {
-    title: '系统布局配置',
-    theme: '主题色',
-    showTagsView: '显示 Tags-View',
-    showSidebarLogo: '显示侧边栏 Logo',
-    fixedHeader: '固定 Header',
-    sidebarTextTheme: '侧边栏文字主题色',
-  },
+  '{name}，你认真工作的样子,真的很赞': '{name}，你认真工作的样子,真的很赞',
 }

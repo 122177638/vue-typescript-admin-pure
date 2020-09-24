@@ -2,27 +2,29 @@
  * @Author: Anles💯
  * @Date: 2020-09-22 10:33:58
  * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 18:57:58
+ * @LastEditTime: 2020-09-24 10:21:10
  * @Description: 👉
  */
 export default {
+  // 彩蛋
+  '{name}，你认真工作的样子,真的很赞': "{name} It's amazing how you work hard",
   // 路由
   首页: 'Dashboard',
   图标: 'Icons',
-  // 导航
 
+  // 导航
   退出登录: 'Log Out',
   换肤: 'Theme',
   布局大小: 'Global Size',
   个人中心: 'Profile',
-  // 登录
 
+  // 登录
   广告监控管理后台: 'Login Form',
   登录: 'Login',
   账号: 'Username',
   密码: 'Password',
-  // tag导航
 
+  // tag导航
   刷新: 'Refresh',
   关闭: 'Close',
   关闭其它: 'Close Others',
