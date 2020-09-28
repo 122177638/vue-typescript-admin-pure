@@ -1,10 +1,3 @@
-<!--
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:58
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 18:59:49
- * @Description: 👉
--->
 <template>
   <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
     <div>

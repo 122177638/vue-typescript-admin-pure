@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-08-28 15:06:17
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-21 17:27:13
- * @Description: 👉
- */
 export const RequestErrorCodeEnum = {
   TIMEOUT: 999,
   UNKNOW_ERROR: 1000, // 未知错误

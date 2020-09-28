@@ -1,11 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:59
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 15:29:30
- * @Description: 👉
- */
-
 /** format time */
 export function formatDate(date: any, format: string = 'YYYY-MM-DD HH:mm:ss') {
   if (!(date instanceof Date)) {
@@ -27,7 +19,7 @@ export function formatDate(date: any, format: string = 'YYYY-MM-DD HH:mm:ss') {
     return String((v.length > 1 ? '0' : '') + (z as any)[v.slice(-1)]).slice(-(v.length > 2 ? v.length : 2))
   })
 }
-/** format money */
+/** format number */
 export function formatNumber(value: number | string, precision = 2, seperator: string = '') {
   if (!value) return 0
   const numStr = typeof value === 'string' ? value.replace(/,/g, '') : `${value || ''}`
@@ -48,6 +40,25 @@ export function formatNumber(value: number | string, precision = 2, seperator: s
     return `${strInt}.${strFractional}`
   }
   return strInt
+}
+/** format ratio */
+export function formatRatio(value: number | string, precision = 2, suffix: string = '%') {
+  if (isNaN(Number(value))) return 0
+  const numStr = typeof value === 'string' ? value.replace(/,/g, '') : `${value || ''}`
+  const arr = numStr.split('.')
+  const strInt = arr[0] || 0
+  let strFractional = arr[1] || ''
+  precision = Math.max(0, precision)
+  if (strFractional.length > precision) {
+    strFractional = strFractional.substr(0, precision)
+  }
+  if (strFractional.length > 0) {
+    strFractional = strFractional.replace(/0+$/, '')
+  }
+  if (strFractional.length > 0) {
+    return `${strInt}.${strFractional}${suffix}`
+  }
+  return `${strInt}${precision > 0 ? '.' + '0'.repeat(precision) : null}${suffix}`
 }
 // Parse the time to string
 export const parseTime = (time?: object | string | number | null, cFormat?: string): string | null => {

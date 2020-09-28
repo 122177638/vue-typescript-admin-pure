@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:59
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 18:07:56
- * @Description: 👉
- */
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
 import store from '@/store'
 import elementVariables from '@/styles/element-variables.scss'

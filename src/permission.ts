@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:58
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-24 09:54:29
- * @Description: 👉
- */
 import router from './router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'

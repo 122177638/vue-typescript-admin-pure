@@ -21,10 +21,12 @@ app.use(morgan('dev'))
 app.use(cors())
 // POST, PUT, DELETE body parser
 app.use(bodyParser.json({ limit: '20mb' }))
-app.use(bodyParser.urlencoded({
-  limit: '20mb',
-  extended: false
-}))
+app.use(
+  bodyParser.urlencoded({
+    limit: '20mb',
+    extended: false,
+  }),
+)
 // No cache
 app.use((req, res, next) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
@@ -38,8 +40,8 @@ const apiDefinition = yaml.load(path.resolve(__dirname, 'swagger.yml'))
 // Create mock functions based on swaggerConfig
 const options = {
   security: {
-    AccessTokenAuth: accessTokenAuth
-  }
+    AccessTokenAuth: accessTokenAuth,
+  },
 }
 const connectSwagger = connector(api, apiDefinition, options)
 connectSwagger(app)
@@ -52,7 +54,7 @@ app.use((req, res, next) => {
   const err = new Error('Not Found')
   res.status(404).json({
     message: err.message,
-    error: err
+    error: err,
   })
 })
 

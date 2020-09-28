@@ -1,10 +1,3 @@
-<!--
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:59
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-23 15:09:40
- * @Description: 👉
--->
 <template>
   <div class="icons-container">
     <el-tabs type="border-card">

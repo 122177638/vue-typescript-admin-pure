@@ -1,11 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-21 15:14:23
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-21 15:48:40
- * @Description: 👉
- */
-
 import { commonRequest } from '../request'
 
 /* 登录 */

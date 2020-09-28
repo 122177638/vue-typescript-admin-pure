@@ -41,6 +41,10 @@ export default class extends Vue {
   overflow: auto;
 }
 
+.app-content {
+  padding: 15px 20px;
+}
+
 .hasTagsView {
   .app-main {
     /* 84 = navbar + tags-view = 50 + 34 */

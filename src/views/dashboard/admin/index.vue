@@ -1,10 +1,3 @@
-<!--
- * @Author: Anles💯
- * @Date: 2020-08-28 15:06:17
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-24 10:22:23
- * @Description: 👉
--->
 <template>
   <div class="app-main dashboard-container">
     <pan-thumb :image="avatar" style="float: left">

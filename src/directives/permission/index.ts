@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:58
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 16:19:19
- * @Description: 👉
- */
 import { DirectiveOptions } from 'vue'
 import { UserModule } from '@/store/modules/user'
 

@@ -14,6 +14,7 @@
     >
       <slot name="prepend" />
       <el-table-column
+        :show-overflow-tooltip="col.tooltip"
         v-for="(col, index) in columns"
         :key="index"
         :prop="col.prop"
@@ -23,22 +24,23 @@
         :min-width="col.minWidth || colMinWidth"
         align="center"
       >
-        <slot :name="col.prop" :col="col" slot-scope="scope" :row="scope.row">
+        <slot slot="header" :name="`${col.prop}_header`" :col="col"></slot>
+        <slot :name="col.prop" :col="col" slot-scope="{ row }" :row="row">
           <div v-if="col.type === 'dropdown'">
             <el-dropdown
-              v-if="scope.row[`_${col.prop}`].options && scope.row[`_${col.prop}`].options.length"
+              v-if="row[`_${col.prop}`].options && row[`_${col.prop}`].options.length"
               trigger="click"
               @command="onChooseOperate"
             >
               <el-button type="primary" size="small">
-                {{ scope.row[`_${col.prop}`].label || '操作' }}
+                {{ row[`_${col.prop}`].label || '操作' }}
                 <i class="el-icon-arrow-down el-icon--right" aria-hidden="true" />
               </el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item
-                  v-for="(item, dIndex) in scope.row[`_${col.prop}`].options"
+                  v-for="(item, dIndex) in row[`_${col.prop}`].options"
                   :key="dIndex"
-                  :command="{ command: item, data: scope.row }"
+                  :command="{ command: item, data: row }"
                   :divided="item.divided"
                 >
                   {{ item.label }}
@@ -51,40 +53,40 @@
             <el-button
               :size="button.size"
               :class="button.class"
-              v-for="(button, index) in scope.row[`_${col.prop}`].buttons"
+              v-for="(button, index) in row[`_${col.prop}`].buttons"
               :key="index"
               :plain="button.plain"
               :type="button.type"
               :label="button.label"
-              @click="button.handler && button.handler(scope.row)"
+              @click="button.handler && button.handler(row)"
             >
               {{ button.label }}
             </el-button>
           </div>
           <el-switch
             v-else-if="col.type === 'switch'"
-            v-model="scope.row[`_${col.prop}`].value"
-            @change="scope.row[`_${col.prop}`].handler && scope.row[`_${col.prop}`].handler(scop.row)"
+            v-model="row[`_${col.prop}`].value"
+            @change="row[`_${col.prop}`].handler && row[`_${col.prop}`].handler(row)"
           />
           <el-tag
             v-else-if="col.type === 'tag'"
-            :size="scope.row[`_${col.prop}`].size || 'small'"
-            :effect="scope.row[`_${col.prop}`].effect"
-            :hit="scope.row[`_${col.prop}`].hit"
-            :type="scope.row[`_${col.prop}`].type"
-            >{{ scope.row[`_${col.prop}`].value }}</el-tag
+            :size="row[`_${col.prop}`].size || 'small'"
+            :effect="row[`_${col.prop}`].effect"
+            :hit="row[`_${col.prop}`].hit"
+            :type="row[`_${col.prop}`].type"
+            >{{ row[`_${col.prop}`].value }}</el-tag
           >
-          <a
-            v-else-if="col.type === 'link' && scope.row[`_${col.prop}`].value"
-            class="cell-link"
-            :href="scope.row[`_${col.prop}`].value"
-            target="_blank"
-            >{{ scope.row[`_${col.prop}`].label }}</a
+          <el-link
+            v-else-if="col.type === 'link'"
+            v-bind="row[`_${col.prop}`]"
+            @click="row[`_${col.prop}`].handler && row[`_${col.prop}`].handler(row)"
           >
-          <span v-else-if="col.formatter" class="cell-span" :class="scope.row[`_${col.prop}`].class">{{
-            scope.row[`_${col.prop}`].value
+            {{ row[`_${col.prop}`].value }}
+          </el-link>
+          <span v-else-if="col.formatter" class="cell-span" :class="row[`_${col.prop}`].class">{{
+            row[`_${col.prop}`].value
           }}</span>
-          <span v-else class="cell-span">{{ scope.row[col.prop] }}</span>
+          <span v-else class="cell-span">{{ row[col.prop] || '-' }}</span>
         </slot>
       </el-table-column>
       <slot name="append" />
@@ -96,7 +98,7 @@
           <span class="load-more-text"><i class="el-icon-loading" aria-hidden="true"></i>正在加载</span>
         </div>
         <div class="load-more" v-else-if="!isLoading && !!renderData.length">
-          <span class="load-more-text">没有更多了</span>
+          <span class="load-more-text nocursor">没有更多了</span>
         </div>
       </div>
     </el-table>
@@ -116,26 +118,20 @@
       />
 
       <div v-else-if="isPagination && (pageData.hasNextPage || pageData.hasPrevPage)" class="simple-pagination">
-        <el-button-group>
-          <el-button
-            type="primary"
-            size="medium"
-            icon="el-icon-arrow-left"
-            :disabled="!pageData.hasPrevPage || isLoading"
-            @click="() => $emit('prev')"
-            >上一页</el-button
-          >
-          <el-button type="text" size="medium" class="page" disabled>{{ pageData.page }}</el-button>
-          <el-button
-            type="primary"
-            size="medium"
-            :disabled="!pageData.hasNextPage || isLoading"
-            @click="() => $emit('next')"
-          >
-            下一页
-            <i class="el-icon-arrow-right el-icon--right" aria-hidden="true" />
-          </el-button>
-        </el-button-group>
+        <el-button plain :disabled="!pageData.hasPrevPage || isLoading" @click="() => $emit('prev')">
+          上一页
+        </el-button>
+        <el-input-number
+          v-model="pageData.page"
+          class="input-page"
+          @blur="() => $emit('query')"
+          :controls="false"
+          :precision="0"
+          :min="1"
+        ></el-input-number>
+        <el-button plain :disabled="!pageData.hasNextPage || isLoading" @click="() => $emit('next')">
+          下一页
+        </el-button>
       </div>
     </template>
   </section>
@@ -251,19 +247,29 @@ export default class PublicTable extends Vue {
         line-height: 30px;
         padding: 0 20px;
         cursor: pointer;
+        &.nocursor {
+          cursor: context-menu;
+        }
       }
     }
   }
   .public-pagination.el-pagination {
     text-align: right;
-    padding: 10px;
+    padding: 15px 10px;
   }
   .simple-pagination {
-    padding: 10px;
-    vertical-align: middle;
-    text-align: right;
-    .page.el-button {
-      width: 40px !important;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .input-page {
+      display: block;
+      width: 50px;
+      margin: 0 15px;
+      .el-input__inner {
+        text-align: center;
+        padding: 0 5px;
+      }
     }
   }
 }

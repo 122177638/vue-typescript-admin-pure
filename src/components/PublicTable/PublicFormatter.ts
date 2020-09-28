@@ -21,14 +21,14 @@ export function ColumnMapFormatter(map: { [key: string]: any }): ColumnOptionFor
 export function ColumnButtonsFormatter(buttons: ButtonOptionItem[]): ColumnOptionFormatter {
   return (_: any, item: any) => ({
     value: _,
-    buttons: buttons.filter(b => !b.filter || b.filter(item)),
+    buttons: buttons.filter((b) => !b.filter || b.filter(item)),
   })
 }
 
 export function ColumnOptionsFormatter(dropdowns: DropdownOptionItem[]): ColumnOptionFormatter {
   return (_: any, item: any) => ({
     value: _,
-    options: dropdowns.filter(b => !b.filter || b.filter(item)),
+    options: dropdowns.filter((b) => !b.filter || b.filter(item)),
   })
 }
 

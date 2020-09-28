@@ -100,7 +100,7 @@
     "webpack": "^4.44.1"
   },
   "bugs": {
-    "url": "https://github.com/122177638/vue-typescript-admin-pure/issues"
+    "url": "https://github.com/zmy122177638/vue-typescript-admin-pure/issues"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
@@ -114,13 +114,13 @@
     "element-ui"
   ],
   "lint-staged": {
-    "*.{js,vue}": [
+    "*.{js,ts,vue}": [
       "vue-cli-service lint"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/122177638/vue-typescript-admin-pure"
+    "url": "git+https://github.com/zmy122177638/vue-typescript-admin-pure"
   },
   "config": {
     "commitizen": {

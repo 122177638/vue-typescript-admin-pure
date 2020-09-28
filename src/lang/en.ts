@@ -1,10 +1,3 @@
-/*
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:58
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-24 10:21:10
- * @Description: 👉
- */
 export default {
   // 彩蛋
   '{name}，你认真工作的样子,真的很赞': "{name} It's amazing how you work hard",

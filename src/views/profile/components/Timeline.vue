@@ -1,10 +1,3 @@
-<!--
- * @Author: Anles💯
- * @Date: 2020-09-22 10:33:59
- * @LastEditors: Anles💯
- * @LastEditTime: 2020-09-22 17:50:36
- * @Description: 👉
--->
 <template>
   <div class="block">
     <el-timeline>

@@ -3,6 +3,17 @@
     <el-form ref="form" class="query-form" :label-width="labelWidth" :inline="inline" :model="_queryParams">
       <slot name="prepend" />
       <template v-for="(item, index) in itemsSync">
+        <!-- 自定义 -->
+        <el-form-item
+          v-if="item.type === 'custom'"
+          :key="index"
+          :style="`width:${item.width ? item.width + 'px' : 'auto'}`"
+          class="query-form-item"
+          :label="item.label"
+        >
+          <slot :name="item.key" v-bind="{ row: item, data: _queryParams }"></slot>
+        </el-form-item>
+
         <!-- date 选择框 -->
         <el-form-item
           v-if="item.type === 'date'"
@@ -83,10 +94,10 @@
       <slot />
       <!-- 按钮集合 可slot追加 -->
       <el-form-item v-if="_showSearch || _showDownload || $slots.button" class="query-form-item btn-box">
-        <el-button v-if="_showSearch || !isWatcher" type="primary" plain icon="el-icon-search" @click="onQuery">
+        <el-button v-if="_showSearch || !isWatcher" type="primary" icon="el-icon-search" @click="onQuery">
           查询
         </el-button>
-        <el-button v-if="_showDownload" plain icon="el-icon-download" @click="() => $emit('download')">
+        <el-button v-if="_showDownload" icon="el-icon-download" type="success" @click="() => $emit('download')">
           下载
         </el-button>
         <slot name="button" />
@@ -103,9 +114,7 @@ import { IQueryItem, IOption, TDateType } from './PublicQuery'
 
 const VALUE_CACHE_MAP: any = {}
 
-@Component({
-  components: {},
-})
+@Component
 export default class PublicQuery extends Vue {
   @Prop({ type: Array }) queryItems!: IQueryItem[]
   @Prop({ type: Object }) value!: any
@@ -271,18 +280,31 @@ export default class PublicQuery extends Vue {
 
 <style lang="scss" scpoed>
 .query-box {
-  padding: 0 20px 0;
+  .query-form {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    .query-form-item {
+      margin: 0 15px 15px 0;
+      &.btn-box {
+        width: auto;
+      }
+      .el-range-separator {
+        width: auto;
+      }
+    }
+  }
   &.inline-box {
     padding: 20px 20px 0;
-  }
-  .query-form-item {
-    margin: 0 20px 22px 0;
-    display: inline-flex;
-    &.btn-box {
-      width: auto;
-    }
-    .el-range-separator {
-      width: auto;
+    .query-form-item {
+      margin: 0 15px 15px 0;
+      display: inline-flex;
+      &.btn-box {
+        width: auto;
+      }
+      .el-range-separator {
+        width: auto;
+      }
     }
   }
   .el-dropdown-link {

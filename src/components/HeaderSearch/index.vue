@@ -103,7 +103,7 @@ export default class extends Vue {
       minMatchCharLength: 1,
       keys: [
         {
-          name: 'title',
+          name: 'meta.title',
           weight: 0.7,
         },
         {
@@ -134,7 +134,7 @@ export default class extends Vue {
 
       if (router.meta && router.meta.title) {
         // generate internationalized title
-        const i18ntitle = i18n.t(`route.${router.meta.title}`).toString()
+        const i18ntitle = i18n.t(`${router.meta.title}`).toString()
         data.meta.title = [...data.meta.title, i18ntitle]
         if (router.redirect !== 'noRedirect') {
           // only push the routes with title
