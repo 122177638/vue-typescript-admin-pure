@@ -21,18 +21,26 @@ const getPageTitle = (key: string) => {
 
 router.beforeEach(async (to: Route, from: Route, next: any) => {
   NProgress.start()
-  if (UserModule.isLogin) {
-    next()
+  if (UserModule.token) {
+    if (to.path === '/login') {
+      next({ path: '/' })
+    } else {
+      if (UserModule.isLogin) {
+        next()
+      } else {
+        try {
+          await UserModule.GetUserInfo()
+          next({ ...to, replace: true })
+        } catch (error) {
+          next(`/login?redirect=${to.path}`)
+        }
+      }
+    }
   } else {
     if (whiteList.includes(to.path)) {
       next()
     } else {
-      try {
-        await UserModule.GetUserInfo()
-        next()
-      } catch (error) {
-        next(`/login?redirect=${to.path}`)
-      }
+      next(`/login?redirect=${to.path}`)
     }
   }
 })

@@ -115,7 +115,6 @@ export const constantRoutes: RouteConfig[] = [
       },
     ],
   },
-  componentsRouter,
 ]
 
 /**
@@ -123,6 +122,7 @@ export const constantRoutes: RouteConfig[] = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes: RouteConfig[] = [
+  componentsRouter,
   /** when your routing map is too long, you can split it into small modules **/
   {
     path: '*',

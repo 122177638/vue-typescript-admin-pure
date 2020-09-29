@@ -131,9 +131,8 @@ export default class extends Vue {
     ;(this.$refs.loginForm as ElForm).validate(async (valid: boolean) => {
       if (valid) {
         this.loading = true
-        const { username, password } = this.loginForm
         try {
-          await UserModule.Login({ account: username, password })
+          await UserModule.Login(this.loginForm)
           this.$router.push({
             path: this.redirect || '/',
             query: this.otherQuery,

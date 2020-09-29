@@ -4,6 +4,7 @@ import { Message, MessageBox } from 'element-ui'
 import router from '@/router'
 import { RequestErrorCodeEnum, IResponseResult, RequestErrorMessageMap, IResponseError } from './requestConst'
 import config from '@/config'
+import { UserModule } from '@/store/modules/user'
 
 interface RequestOptions {
   /** 公共参数配置 */
@@ -37,6 +38,7 @@ let requestOptions: RequestOptions = {
       baseURL: '',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        'X-Access-Token': UserModule.token,
       },
     }
   },
@@ -74,8 +76,6 @@ function showLoginTip() {
 }
 
 function handleRequestError(error: IResponseError) {
-  console.log(error)
-
   if (error.code === RequestErrorCodeEnum.PERMISSION_NOT_LOGIN) {
     // if (UserModule.isLogin) {
     //   showLoginTip()
@@ -162,15 +162,15 @@ service.interceptors.response.use(
   },
 )
 /** 基础服务 */
-export function commonRequest(option: AxiosRequestConfig): Promise<any> {
+export function baseRequest(option: AxiosRequestConfig): Promise<any> {
   const { headers = {}, baseURL = '' } = option
-  option.headers = { AHost: 'commonServer', ...headers }
-  option.baseURL = baseURL || config.commonApiURL
+  option.headers = { AHost: 'base-server', ...headers }
+  option.baseURL = baseURL || config.baseApiURL
   return new Promise((resolve, reject) => {
     service
       .request(option)
       .then((response) => {
-        resolve(response.data)
+        resolve(response.data.payload)
       })
       .catch((err: AxiosError) => {
         reject(err)
@@ -178,15 +178,15 @@ export function commonRequest(option: AxiosRequestConfig): Promise<any> {
   })
 }
 /** 广告服务 */
-export function adRequest(option: AxiosRequestConfig): Promise<any> {
+export function otherRequest(option: AxiosRequestConfig): Promise<any> {
   const { headers = {}, baseURL = '' } = option
-  option.headers = { AHost: 'adverts-admin', ...headers }
-  option.baseURL = baseURL || config.adApiURL
+  option.headers = { AHost: 'other-server', ...headers }
+  option.baseURL = baseURL || config.otherApiURL
   return new Promise((resolve, reject) => {
     service
       .request(option)
       .then((response) => {
-        resolve(response.data)
+        resolve(response.data.payload)
       })
       .catch((err: AxiosError) => {
         reject(err)

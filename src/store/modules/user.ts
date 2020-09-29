@@ -5,58 +5,65 @@ import { TagsViewModule } from './tags-view'
 import store from '@/store'
 import api from '@/api'
 import avatar from '@/assets/images/timg.gif'
+import { getToken, removeToken, setToken } from '@/utils/cookies'
 export interface IUserState {
   avatar: any
 }
 
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
+  public token: string = getToken() || ''
   public avatar = avatar
   public userInfo: any = {}
   public isLogin = false
 
-  @Action({ commit: 'SET_USER_INFO' })
-  public async Login(loginInfo: { account: string; password: string }) {
-    const userInfo = await api.common.login(loginInfo)
-    return userInfo
+  @Action
+  public async Login(loginInfo: { username: string; password: string }) {
+    const { token } = await api.user.login(loginInfo)
+    this.SET_TOKEN(token)
   }
-
-  @Action({ commit: 'SET_USER_INFO' })
+  @Mutation
+  private SET_TOKEN(token: string) {
+    setToken(token)
+    this.token = token
+  }
+  @Mutation
+  private RESET_TOKEN() {
+    removeToken()
+    this.token = ''
+  }
+  @Action
   public async GetUserInfo() {
-    const userInfo = await api.common.getUserInfo()
-    return userInfo
+    try {
+      const userInfo = await api.user.getUserInfo()
+      this.SET_USER_INFO(userInfo)
+    } catch (error) {
+      this.SET_USER_INFO({})
+      this.RESET_TOKEN()
+    }
   }
 
-  @Action({ commit: 'SET_USER_INFO' })
-  public async LoginOut() {
-    await api.common.loginOut()
-    return {}
+  @Action
+  public async LogOut() {
+    await api.user.logOut()
+    this.SET_USER_INFO({})
+    this.RESET_TOKEN()
+    resetRouter()
   }
 
   @Mutation
   private SET_USER_INFO(userInfo: any) {
     this.isLogin = Boolean(Object.keys(userInfo).length)
     this.userInfo = userInfo
-    UserModule.context.dispatch('ChangeRoles', ['admin'])
+    if (this.isLogin) UserModule.context.dispatch('ChangeRoles', ['admin'])
   }
 
   @Action
   public async ChangeRoles(roles: string[]) {
-    resetRouter()
     // Generate dynamic accessible routes based on roles
     PermissionModule.GenerateRoutes(roles)
     // Add generated routes
     router.addRoutes(PermissionModule.dynamicRoutes)
-    // Reset visited views and cached views
-    TagsViewModule.delAllViews()
-  }
-
-  @Action
-  public async LogOut() {
-    await api.common.loginOut()
-
-    resetRouter()
-
     // Reset visited views and cached views
     TagsViewModule.delAllViews()
   }
